@@ -1,0 +1,48 @@
+--- LEGAL STUFF ---
+
+My code is provided under a Creative Commons Attribution license (for details
+please see: http://creativecommons.org/licenses/by/3.0/). In summary, you are
+free to use the code for any purpose as long as you remember to mention my
+name (Torben Sko) at some point. Also please note that my code is provided AS
+IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN,
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+
+--- PURPOSE ---
+
+A PHP page to collate the CSV view data (max of 31 days per file) provided via
+YouTube's Insight service into a single MySQL database
+
+
+--- REQUIREMENTS ---
+
+- command line PHP 
+- MySQL database
+
+
+--- SETTING UP ---
+
+1. Log onto YouTube, navigate to your videos, click 'Insight' and manually
+download the CSV reports for your video. The easiest way to get the reports is
+to set your range to 1 month and then manually slide the date range to the
+first of each month, remembering to click the 'csv' link at the bottom of the
+page. This script handles overlaps, so don't worry if you have the data for a
+particular date more than once
+
+2. The CSV files should download and expand into folders called
+"insight_VIDID_STARTDATE-ENDDATE_world". Place all these folders into another
+folder called vid_VIDID (where VIDID is replaced with the name of your video)
+and place this folder into your repo folder (i.e. your copy of this Git
+repository). Some sample data is included as part of this repo. Make sure
+data follows the same structure.
+
+3. Copy the file 'db_details.php.bak' to 'db_details.php', making sure the
+details within the file match your own setup. If you don't have a password set
+on your local database, you should be safe to use the default values
+
+4. Open your terminal/console, navigate to your repo folder and run the
+command: ./run_me.sh
+
+5. Your view data will now be in a single table in your local MySQL database.
+You can then use a tool like R to plot and manipulate this data (see the
+included view.r script as an example)
